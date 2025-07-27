@@ -1,0 +1,29 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Get-Ip Function Gateway
+paths:
+  /:
+    get:
+      summary: Получение text/plain
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ${function_id}
+  /json:
+    get:
+      summary: Получение text/json
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ${function_id}
+  /{proxy+}:
+    get:
+      summary: Получение text/html
+      parameters:
+        - name: proxy
+          in: path
+          required: true
+          schema:
+            type: string
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ${function_id}
